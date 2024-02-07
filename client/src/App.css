@@ -32,12 +32,13 @@
   align-items: center; /* Aligns items vertically */
 }
 
-.navbar-links a {
+.navbar-links a{
   color: #DAA520;
   text-decoration: none;
   margin-left: 20px;
   font-size: 18px;
-  font-family: 'Lobster', cursive; /* Ensures the text matches other text styles */
+  font-family: 'Lobster'; /* Ensures the text matches other text styles */
+  cursor: pointer;
 }
 
 .navbar-links a:hover {

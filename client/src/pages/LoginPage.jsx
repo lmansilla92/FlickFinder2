@@ -1,17 +1,25 @@
 import { useMutation } from '@apollo/client';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../LoginPage.css';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
+import AppContext from '../utils/AppContext'
+
+console.log('AppContext', AppContext);
 
 
 function LoginPage() {
     const [formState, setFormState] = useState({ username: '', password: '' });
-
+    const {loggedIn, setLoggedIn} = useContext(AppContext);
     const [login, { error }] = useMutation(LOGIN);
+
+    console.log('loggedIn', loggedIn);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoggedIn(true);
+        localStorage.setItem('loggedIn', true)
         // Handle login logic here
         // console.log(username, password); // For demonstration purposes
         try {
