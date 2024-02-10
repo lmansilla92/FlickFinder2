@@ -1,4 +1,3 @@
-// import Outlet component
 import { Outlet } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
@@ -32,9 +31,8 @@ function App() {
       <AppContextProvider>
         <div className='background-container'>
           <Header />
-          <SearchBar />
           <Outlet />
-          {/* <Footer />  */}
+          {/* Add Footer Component if needed */}
         </div>
       </AppContextProvider>
     </ApolloProvider>

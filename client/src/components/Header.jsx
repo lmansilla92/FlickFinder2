@@ -5,7 +5,7 @@ import AppContext from '../utils/AppContext';
 import LogoutButton from '../components/LogoutButton';
 
 const Header = () => {
-  const {loggedIn} = useContext(AppContext)
+  const { loggedIn } = useContext(AppContext)
   console.log('loggedIn', loggedIn);
   return (
     <nav className="header">
@@ -13,9 +13,9 @@ const Header = () => {
         <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Logo" />
       </Link>
       <div className="navbar-links">
-        {!loggedIn ? <Link to="/login">Login</Link> : <LogoutButton />}
+        {loggedIn && <LogoutButton />}
 
-        <Link to="/profile">View Profile</Link>
+        {loggedIn && <Link to="/profile">View Profile</Link>}
       </div>
     </nav>
   );

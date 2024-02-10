@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react';
 import AppContext from '../utils/AppContext';
-// import useNavigate to change URL path after API fetch
 import { useNavigate } from 'react-router-dom';
-// import Results from '../components/Results';
 
 // SearchBar component
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const {setData} = useContext(AppContext);
+    const { setData } = useContext(AppContext);
 
     // store useNavigate function in a const to use later to change the URL path after API fetch
     const navigate = useNavigate();
