@@ -1,11 +1,15 @@
 import React, { useState, useContext } from 'react';
 import AppContext from '../utils/AppContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 
 // SearchBar component
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const { setData } = useContext(AppContext);
+
+    const location = useLocation();
+    const currentPage = location.pathname;
 
     // store useNavigate function in a const to use later to change the URL path after API fetch
     const navigate = useNavigate();
@@ -41,7 +45,7 @@ const SearchBar = () => {
         <>
             <div>
                 <div className="search-container">
-                    <h1>Welcome to Flick Finder</h1>
+                    {currentPage === '/' ? <h1>Welcome to Flick Finder</h1> : <h1>Search Another Movie</h1>}
                     <form onSubmit={handleSearchSubmit}>
                         <input
                             type="text"

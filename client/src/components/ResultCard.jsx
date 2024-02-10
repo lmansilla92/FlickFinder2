@@ -72,7 +72,7 @@ const ResultCard = ({imgPlaceHolder, result}) => {
                 ></img>
                 <div className='card-text'>
                     <h3>{result.titleNameText}</h3>
-                    <div>{result.topCredits.map((actor) => <p>{actor}</p>)}</div>
+                    <div>{result.topCredits.map((actor) => <p key={actor}>{actor}</p>)}</div>
                     <p>{result.titleReleaseText}</p>
                 </div>
             </Link>

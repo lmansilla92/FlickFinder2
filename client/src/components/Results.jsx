@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import ResultCard from './ResultCard';
 import AppContext from '../utils/AppContext';
+import SearchBar from '../components/SearchBar';
 
 
 // Results component
@@ -17,32 +18,36 @@ const Results = () => {
         console.log('Data Length: ', data.length)
         console.log('Data: ', data);
         dataContainer = (
-            <div className='results-container'>
+            <>
+                {/* Change logic to display "Search Another Movie" when on results page instead of "Welcome to FlickFinder" */}
+                <SearchBar /> 
+                <div className='results-container'>
 
-                {
-                    data.map((result) => (
-                        // conditionally render ResultCard component using ternary
-                        result.i ? (
-                            <ResultCard
-                                key={result.id}
-                                result={result}
-                                currentMovie={currentMovie}
-                                setCurrentMovie={setCurrentMovie}
-                            />
+                    {
+                        data.map((result) => (
+                            // conditionally render ResultCard component using ternary
+                            result.i ? (
+                                <ResultCard
+                                    key={result.id}
+                                    result={result}
+                                    currentMovie={currentMovie}
+                                    setCurrentMovie={setCurrentMovie}
+                                />
 
-                        ) : (
-                            // render ResultCard with imgPlaceHolder prop for result without an imageUrl
-                            <ResultCard
-                                key={result.id}
-                                result={result}
-                                currentMovie={currentMovie}
-                                setCurrentMovie={setCurrentMovie}
-                                imgPlaceHolder={imgPlaceHolder}
-                            />
-                        )
-                    ))
-                }
-            </div>
+                            ) : (
+                                // render ResultCard with imgPlaceHolder prop for result without an imageUrl
+                                <ResultCard
+                                    key={result.id}
+                                    result={result}
+                                    currentMovie={currentMovie}
+                                    setCurrentMovie={setCurrentMovie}
+                                    imgPlaceHolder={imgPlaceHolder}
+                                />
+                            )
+                        ))
+                    }
+                </div>
+            </>
         );
     }
 
