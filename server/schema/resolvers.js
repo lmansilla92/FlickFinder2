@@ -1,14 +1,16 @@
 // import signToken, AuthentificationError and User model.
 const { signToken, AuthenticationError } = require('../utils/auth');
 const { User } = require('../models');
+const { Movie } = require('../models');
 
 // Queries and Mutations that we can use in graphql(apollo sandbox).
+// Where we tell GraphQL HOW to get back the data
 const resolvers = {
 
     // Queries
     Query: {
         // A query to get all users.
-        users: async () => User.find(),
+        users: async () => await User.find(),
         user: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');

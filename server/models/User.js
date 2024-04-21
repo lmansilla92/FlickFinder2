@@ -2,9 +2,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// Import movie schema from Movie.js
-    //? commented out because schema has not been created
-// const movieSchema = require('./Movie');
 
 // Schema/model for user
 const userSchema = new Schema(
@@ -24,9 +21,6 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        // set savedMovies to be an array of data that corresponds with the movieSchema
-            //? commented out because schema has not been created
-        // savedMovies: [movieSchema],
     },
     // set to use virtuals
     {

@@ -11,6 +11,10 @@ const fetch = require('node-fetch');
 //imports for graphql
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
+
+
+// import our typeDefs and resolvers for graphql
+const { typeDefs, resolvers } = require('./schema');
 const db = require('./config/connection'); 
 
 
@@ -62,8 +66,7 @@ app.get('/results/movie/:movieId', async (req, res) => {
 });
 
 
-// import our typeDefs and resolvers for graphql
-const { typeDefs, resolvers } = require('./schema');
+
 
 // bring in instance of server for graphql
 const PORT = process.env.PORT || 3001;
@@ -101,7 +104,3 @@ const startApolloServer = async () => {
 
 startApolloServer();
 
-// Start server
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`)
-// });

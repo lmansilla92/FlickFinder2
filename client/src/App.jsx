@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
-import SearchBar from './components/SearchBar';
 import Header from './components/Header';
 import AppContextProvider from './utils/AppContextProvider';
 

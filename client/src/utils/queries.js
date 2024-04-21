@@ -6,11 +6,6 @@ query user($username: String!) {
     _id
     username
     email
-    thoughts {
-      _id
-      thoughtText
-      createdAt
-    }
   }
 }
 `;

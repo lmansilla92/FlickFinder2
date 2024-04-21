@@ -1,9 +1,17 @@
-const typeDefs = `
 
+// Type of data GraphQL is working with
+const typeDefs = `
 type User {
   _id: ID!
   username: String!
   email: String!
+}
+
+type Movie {
+  id: ID!
+  title: String!
+  year: Int!
+  plot: String!
 }
 
 type Auth {
@@ -12,7 +20,7 @@ type Auth {
 }
 
 type Query {
-  user: [User]!
+  user: User!
   users: [User]
 }
 

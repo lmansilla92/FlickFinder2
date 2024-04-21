@@ -1,14 +1,12 @@
-import { Link } from 'react-router-dom';
 import AppContext from '../utils/AppContext'
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 
 
-const ResultCard = ({imgPlaceHolder, result}) => {
+const ResultCard = ({ result }) => {
     const navigate = useNavigate();
     let movieId;
-    const {data, setData} = useContext(AppContext);
+    const { data, setData } = useContext(AppContext);
     // const navigate = useNavigate();
     console.log('ResultCardData', data)
 
@@ -32,16 +30,17 @@ const ResultCard = ({imgPlaceHolder, result}) => {
         }
     }
 
-    const card = result.titlePosterImageModel ? (
+    // only render movies that contain an image
+    const card = result.titlePosterImageModel &&
         <div
-            key={result.id} 
+            key={result.id}
             className='result-card elasticPopUpAnimation'
             onClick={handleClick}
             data-id={result.id}
         >
             <img
                 className='card-img'
-                src={result.titlePosterImageModel.url} // conditionally render image
+                src={result.titlePosterImageModel.url} 
                 width="100"
                 height="150"
                 alt='Image of movie, show, video, or actor'
@@ -53,36 +52,7 @@ const ResultCard = ({imgPlaceHolder, result}) => {
             </div>
         </div>
 
-    ) : (
-
-        // <div key={data.id} className='result-card'>
-            <Link
-                to={`/results/${result.id}`}
-                key={result.id} 
-                className='result-card elasticPopUpAnimation'
-                onClick={handleClick}
-                data-id={result.id}
-            >
-                <img
-                    className='card-img'
-                    src={imgPlaceHolder} // conditionally render image
-                    width="100"
-                    height="150"
-                    alt='Placeholder for missing image'
-                ></img>
-                <div className='card-text'>
-                    <h3>{result.titleNameText}</h3>
-                    <div>{result.topCredits.map((actor) => <p key={actor}>{actor}</p>)}</div>
-                    <p>{result.titleReleaseText}</p>
-                </div>
-            </Link>
-        // </div>
-        
-    )
-    return (
-        card
-    )
+    return card
 }
 
 export default ResultCard;
-

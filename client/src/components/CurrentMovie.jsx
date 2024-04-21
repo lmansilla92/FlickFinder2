@@ -1,5 +1,5 @@
 import AppContext from '../utils/AppContext';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 const CurrentMovie = () => {
 
@@ -24,8 +24,6 @@ const CurrentMovie = () => {
                         alt={`Poster for ${data.originalTitleText.text}`}
                     />
                     <section className='trailer-container'>
-                        {/* embedded movie trailer */}
-                        {/* data.primaryVideo.edges[0].node.playbackURLs[0].url */}
                         <iframe
                             className='iframe'
                             title="IMDb Video"
@@ -43,9 +41,16 @@ const CurrentMovie = () => {
                     {/* Need to figure out how to go through nested array of objects */}
                     <hr></hr>
                     <p>Director: {data.directors[0].credits[0].name.nameText.text}</p>
-                    <p>Writers: {data.writers[0].credits.map((writer) => writer.name.nameText.text + ' \u00B7 ' )}</p>
+                    <p>Writers: {data.writers[0].credits.map((writer) => writer.name.nameText.text + ' \u00B7 ')}</p>
                     <p>Stars: {data.principalCredits[2].credits.map((star) => star.name.nameText.text + ' \u00B7 ')}</p>
                 </section>
+                <button
+                    title={data.originalTitleText.text}
+                    year={data.releaseYear.year}
+                    plot={data.plot.plotText.plainText}
+                >
+                    Add to Favorites
+                </button>
             </div>
         </div>
     )
