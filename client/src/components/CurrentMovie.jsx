@@ -1,5 +1,5 @@
 import AppContext from '../utils/AppContext';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 const CurrentMovie = () => {
 
@@ -41,8 +41,19 @@ const CurrentMovie = () => {
                     {/* Need to figure out how to go through nested array of objects */}
                     <hr></hr>
                     <p>Director: {data.directors[0].credits[0].name.nameText.text}</p>
-                    <p>Writers: {data.writers[0].credits.map((writer) => writer.name.nameText.text + ' \u00B7 ')}</p>
-                    <p>Stars: {data.principalCredits[2].credits.map((star) => star.name.nameText.text + ' \u00B7 ')}</p>
+                    {/* Conditionally render \u00B7 by checking if the writer/star is the last one in the array */}
+                    <p>Writers: {data.writers[0].credits.map((writer, index) => (
+                        <React.Fragment key={writer.name.nameText.text}>
+                            {writer.name.nameText.text}
+                            {index < data.writers[0].credits.length - 1 && ' \u00B7 '}
+                        </React.Fragment>
+                    ))}</p>
+                    <p>Stars: {data.principalCredits[2].credits.map((star, index) => (
+                        <React.Fragment key={star.name.nameText.text}>
+                            {star.name.nameText.text}
+                            {index < data.principalCredits[2].credits.length - 1 && ' \u00B7 '}
+                        </React.Fragment>
+                    ))}</p>
                 </section>
                 <button
                     title={data.originalTitleText.text}
