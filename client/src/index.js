@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import './App.css';
 import App from './App';
@@ -13,44 +13,20 @@ import LoginPage from './pages/LoginPage';
 import Profile from './pages/Profile'; 
 import reportWebVitals from './reportWebVitals';
 
-// store routes in router const
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <Error />,
-    children: [
-      {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: '/login',
-        element: <LoginPage />
-      },
-      {
-        path: '/register',
-        element: <Register />
-      },
-      {
-        path: '/results',
-        element: <Results />
-      },
-      {
-        path: '/results/:id',
-        element: <CurrentMovie />
-      },
-      {
-        path: '/profile',
-        element: <Profile /> 
-      }
-    ]
-  }
-]);
-
-// create root element using RouterProvider and our routes defined in router const
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <Router>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route index element={<HomePage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<Register />} />
+        <Route path="results" element={<Results />} />
+        <Route path="results/:id" element={<CurrentMovie />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="*" element={<Error />} />
+      </Route>
+    </Routes>
+  </Router>
 );
 
 reportWebVitals();

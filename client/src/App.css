@@ -82,7 +82,7 @@
 }
 
 .current-movie-card {
-  margin: 0 auto;
+  margin: 20px auto;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;

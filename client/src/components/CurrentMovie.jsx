@@ -6,6 +6,10 @@ const CurrentMovie = () => {
     const { data, setData } = useContext(AppContext);
     console.log('current movie data: ', data);
 
+    const addToFavorites = () => {
+
+    }
+
     return (
         <div className='results-container'>
             <div className='current-movie-card'>
@@ -59,6 +63,7 @@ const CurrentMovie = () => {
                     title={data.originalTitleText.text}
                     year={data.releaseYear.year}
                     plot={data.plot.plotText.plainText}
+                    onClick={addToFavorites}
                 >
                     Add to Favorites
                 </button>
