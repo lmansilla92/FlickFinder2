@@ -14,8 +14,7 @@ const Results = () => {
     let dataContainer = null
 
     if (data?.length > 0) {
-        console.log('Data Length: ', data.length)
-        console.log('Data: ', data);
+        console.log('Results: ', data);
         dataContainer = 
             <>
                 <SearchBar />

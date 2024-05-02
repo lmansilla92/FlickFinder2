@@ -8,7 +8,6 @@ const ResultCard = ({ result }) => {
     let movieId;
     const { data, setData } = useContext(AppContext);
     // const navigate = useNavigate();
-    console.log('ResultCardData', data)
 
     const handleClick = async (e) => {
         movieId = e.currentTarget.getAttribute('data-id')

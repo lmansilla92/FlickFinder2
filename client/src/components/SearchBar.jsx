@@ -29,7 +29,6 @@ const SearchBar = () => {
         try {
             const response = await fetch(`http://localhost:3001/results/${searchTerm}`);
             const jsonData = await response.json();
-            console.log(jsonData);
 
             // update data state value
             setData(jsonData);
