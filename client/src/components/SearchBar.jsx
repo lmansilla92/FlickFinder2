@@ -55,7 +55,6 @@ const SearchBar = () => {
                         <button type="submit">Search</button>
                     </form>
                 </div>
-                {/* <Results /> */}
             </div>
         </>
     );

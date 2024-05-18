@@ -32,13 +32,21 @@
   align-items: center; /* Aligns items vertically */
 }
 
-.navbar-links a{
+.navbar-links a, button{
   color: #DAA520;
   text-decoration: none;
   margin-left: 20px;
   font-size: 18px;
   font-family: 'Lobster'; /* Ensures the text matches other text styles */
   cursor: pointer;
+}
+
+/* Additional styles specific to <button> elements with the navbar-links class */
+.navbar-links button {
+  background: none; /* Remove background color */
+  border: none; /* Remove border */
+  padding: 0; /* Remove padding */
+  cursor: pointer; /* Ensure pointer cursor */
 }
 
 .navbar-links a:hover {
