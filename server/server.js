@@ -45,6 +45,17 @@ app.get('/', (req, res) => {
   res.send('Welcome to FlickFinder!');
 });
 
+app.get('/api/user/:username', async (req, res) => {
+  try {
+    // Call the resolver function directly and pass the context object
+    const data = await resolvers.Query.user(null, null, { user: { _id: req.params.username } });
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Create route with a variable in the path
 app.get('/results/:searchTerm', async (req, res) => {
   // access query variable from the req.params searchTerm from the client side

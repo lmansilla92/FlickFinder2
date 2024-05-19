@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import '../profile.css';
+import Auth from '../utils/auth';
 
 const ProfilePage = ({ username }) => {
     const [userData, setUserData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     console.log('username: ', username) // remove when done developing
+    console.log('userData: ', userData);
+
+    console.log("Auth: ", Auth.getProfile().data)
 
     useEffect(() => {
         // Define fetchData inside useEffect
