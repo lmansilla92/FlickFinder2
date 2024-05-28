@@ -6,13 +6,19 @@ const CurrentMovie = () => {
     const { data, setData, favorites, setFavorites } = useContext(AppContext);
     console.log('current movie data: ', data);
 
+    const plot = data.plot.plotText.plainText
+    const cast = data.principalCredits[2].credits.map((star, index) => star.name.nameText.text);
+    const id = data.id
+    const poster = data.primaryImage.url
+    const title = data.originalTitleText.text
+    const year = data.releaseYear.year
+    console.log('--------')
+    console.log("cast: ", cast);
+
     const addToFavorites = (e) => {
         e.preventDefault();
 
-        // Extract movie details from button attributes
-        const title = e.target.getAttribute('title');
-        const year = e.target.getAttribute('year');
-        const plot = e.target.getAttribute('plot');
+
 
         // Iterate through favorites to check if movie is a duplicate
         const isDuplicate = favorites.some(movie => (

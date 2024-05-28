@@ -12,8 +12,10 @@ const resolvers = {
         // A query to get all users.
         users: async () => await User.find(),
         user: async (parent, args, context) => {
+            const username = context.user._id;
+            console.log('username: ', username);
             if (context.user) {
-                const userData = await User.findOne({ username: req.params.username }).select('-__v -password');
+                const userData = await User.findOne({ username: username }).select('-__v -password');
               return userData;
             }
             throw new AuthenticationError('User not authenticated');
