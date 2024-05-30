@@ -18,16 +18,16 @@ function LoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoggedIn(true);
-        localStorage.setItem('loggedIn', true)
-        // Handle login logic here
-        // console.log(username, password); // For demonstration purposes
+
         try {
             const mutationResponse = await login({
               variables: { username: formState.username, password: formState.password },
             });
             const token = mutationResponse.data.login.token;
             Auth.login(token);
+            setLoggedIn(true);
+            localStorage.setItem('loggedIn', true)
+            console.log('Successfully logged in');
           } catch (e) {
             console.log(e);
           }
@@ -51,8 +51,6 @@ function LoginPage() {
                         id="username"
                         type="text"
                         name="username"
-                        // value={username}
-                        // onChange={(e) => setUsername(e.target.value)}
                         onChange={handleChange}
                     />
                 </div>
@@ -62,8 +60,6 @@ function LoginPage() {
                         id="password"
                         type="password"
                         name="password"
-                        // value={password}
-                        // onChange={(e) => setPassword(e.target.value)}
                         onChange={handleChange}
                     />
                 </div>

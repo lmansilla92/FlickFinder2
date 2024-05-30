@@ -1,57 +1,60 @@
-// Import schema, model and bcryprt
+// Import necessary modules from mongoose and bcrypt
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-
-// Schema/model for user
-const userSchema = new Schema(
-    {
-        username: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            match: [/.+@.+\..+/, 'Must use a valid email address'],
-        },
-        password: {
-            type: String,
-            required: true,
-        },
+// Define the user schema with mongoose
+const userSchema = new Schema({
+    // Username field: must be unique and required
+    username: {
+        type: String,
+        required: true,
+        unique: true,
     },
-    // set to use virtuals
-    {
-        toJSON: {
-            virtuals: true,
-        },
-    }
-);
+    // Email field: must be unique, required, and match a specific pattern
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: [/.+@.+\..+/, 'Must use a valid email address'],
+    },
+    // Password field: required
+    password: {
+        type: String,
+        required: true,
+    },
+    // Favorites field: an array of ObjectIds that reference the Movie model
+    favorites: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
+    }]
+}, {
+    // Configure schema to include virtual properties when converted to JSON
+    toJSON: {
+        virtuals: true,
+    },
+});
 
-// method to hash password
+// Middleware to hash the password before saving a new or modified user document
 userSchema.pre('save', async function(next) {
-    
-    // if new password or modified password, hash the password
+    // Check if the document is new or the password field is modified
     if (this.isNew || this.isModified('password')) {
-        // set salt rounds
+        // Define the number of salt rounds for hashing
         const saltRounds = 10;
-
-        // hash the password
+        // Hash the password with bcrypt
         this.password = await bcrypt.hash(this.password, saltRounds);
     }
+    // Move to the next middleware or save the document
     next();
 });
 
-// method to compare and validate password when logging in
+// Method to compare a given password with the hashed password stored in the database
 userSchema.methods.isCorrectPassword = async function (password) {
+    // Use bcrypt to compare the provided password with the stored hash
     return bcrypt.compare(password, this.password);
 };
 
-//TODO: Create method that returns length of saved movies array for a specific user, when querying that specific user
-
-
+// Create the User model from the schema
 const User = model('User', userSchema);
 
+// Export the User model for use in other parts of the application
 module.exports = User;

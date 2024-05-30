@@ -12,30 +12,35 @@ const CurrentMovie = () => {
     const poster = data.primaryImage.url
     const title = data.originalTitleText.text
     const year = data.releaseYear.year
-    console.log('--------')
+    console.log('********');
     console.log("cast: ", cast);
+    console.log("plot: ", plot);
+    console.log("id: ", id);
+    console.log("poster: ", poster);
+    console.log("title: ", title);
+    console.log("year: ", year);
+    console.log('********');
 
     const addToFavorites = (e) => {
         e.preventDefault();
+        console.log('button clicked');
 
+        // // Iterate through favorites to check if movie is a duplicate
+        // const isDuplicate = favorites.some(movie => (
+        //     movie.title === title && movie.year === year && movie.plot === plot
+        // ));
 
+        // // If movie is not a duplicate, update favorites state value
+        // if (!isDuplicate) {
+        //     // Create a new favorite movie object
+        //     const newFavorite = { title, year, plot };
 
-        // Iterate through favorites to check if movie is a duplicate
-        const isDuplicate = favorites.some(movie => (
-            movie.title === title && movie.year === year && movie.plot === plot
-        ));
-
-        // If movie is not a duplicate, update favorites state value
-        if (!isDuplicate) {
-            // Create a new favorite movie object
-            const newFavorite = { title, year, plot };
-
-            // Update favorites state value
-            setFavorites(prevFavorites => [...prevFavorites, newFavorite]);
-            console.log('movie added to favorites!')
-        } else {
-            console.log("This movie is already in favorites.");
-        }
+        //     // Update favorites state value
+        //     setFavorites(prevFavorites => [...prevFavorites, newFavorite]);
+        //     console.log('movie added to favorites!')
+        // } else {
+        //     console.log("This movie is already in favorites.");
+        // }
 
     }
 // Log favorites in a useEffect hook to see updated values
