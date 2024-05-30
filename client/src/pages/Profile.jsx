@@ -70,8 +70,8 @@ const ProfilePage = () => {
             <div className="profile-liked-movies">
                 <h2>Liked Movies:</h2>
                 <ul className="profile-movie-list">
-                    {userData.likedMovies?.map(movie => (
-                        <li key={movie.id} className="movie-card">
+                    {userData.movies?.map((movie, index) => (
+                        <li key={`${movie.id}-${index}`} className="movie-card">
                             <div className="movie-title">{movie.title}</div>
                             <div className="movie-info">More info...</div>
                         </li>
