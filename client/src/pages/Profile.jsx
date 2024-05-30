@@ -7,12 +7,13 @@ const ProfilePage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    console.log('userData: ', userData);
+    if(userData.username){
+        console.log('userData: ', userData);
+    }
+
 
     const username = Auth.getProfile().data.username;
-    console.log('username: ', username) // remove when done developing
 
-    console.log("Auth: ", Auth.getProfile().data)
 
     useEffect(() => {
         // Define fetchData inside useEffect
@@ -31,6 +32,10 @@ const ProfilePage = () => {
                 setIsLoading(false);
             }
         };
+
+        console.log('username: ', username) // remove when done developing
+
+        console.log("Auth: ", Auth.getProfile().data)
 
         if (username) {
             fetchData();
